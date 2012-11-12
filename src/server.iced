@@ -30,6 +30,7 @@ exports.Server = class Server
   run : ->
     @setHooks()
     @server.serve @port
+    @make_secure()
 
   #-----------------------------------------
   
@@ -107,9 +108,25 @@ exports.Server = class Server
     @upstream = argv.u
     for a in argv._
       @parse_resolution a
+      
+    @uid = argv.U
+    @gid = argv.G
 
     console.log "[I] Upstream server is: #{@upstream}"
  
+  #-----------------------------------------
+
+  make_secure : () ->
+    u = process.getuid()
+    if u is 0
+      if @gid
+        console.log "[I] setgid to #{@gid}"
+        process.setgid @gid
+      if @uid
+        console.log "[I] setuid to #{@uid}"
+        process.setuid @uid
+      
+   
   #-----------------------------------------
 
   resolve : (q, cb) ->
