@@ -48,7 +48,6 @@ From the top directory.  The file `lib/cmd.js` is hand-written,
 but everything else in `lib/` is generated from a `.iced` file
 found in the `src/` directory.
 
-
 Security
 --------
 
