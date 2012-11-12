@@ -8,7 +8,7 @@ of the work to a (real) upstream server.
 Install
 --------
 
-   npm install emergency-dns-server -g
+    npm install emergency-dns-server -g
 
 
 Running
