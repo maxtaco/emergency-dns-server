@@ -47,3 +47,11 @@ And then you can build by running:
 From the top directory.  The file `lib/cmd.js` is hand-written,
 but everything else in `lib/` is generated from a `.iced` file
 found in the `src/` directory.
+
+
+Security
+--------
+
+You can supply `-U <user>` and `-G <group>` to have `ednsd`
+`setuid` and `setgid` respectively.  This is good for security
+if you are running as root and binding to port 53.

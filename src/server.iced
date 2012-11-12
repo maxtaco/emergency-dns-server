@@ -1,5 +1,6 @@
 dns = require 'native-dns'
-  
+path = require 'path'
+fs = require 'fs'
 
 ##=======================================================================
 
@@ -100,19 +101,45 @@ exports.Server = class Server
         @tab[from] = {} unless @tab[from]?
         @tab[from][qtyp] = to
         console.log "[I] Resolving #{from}/#{typ} -> #{to}"
+ 
+  #-----------------------------------------
 
+  do_version : (cb) ->
+    
+    await fs.realpath __filename, defer err, res
+    if err
+      throw "Can't resolve realpath #{__filename}: #{err}"
+      
+    dirname = path.dirname res
+    pkg = path.join dirname, '..', 'package.json'
+    await fs.readFile pkg, 'utf8', defer err, data
+    if err
+      throw "Can't read #{pkg}: #{err}"
+    j = JSON.parse data
+    console.log "ednsd version #{j.version}"
+
+    cb()
+     
   #-----------------------------------------
   
-  parse_args : (argv) ->
-    @port = argv.p if argv.p?
-    @upstream = argv.u
-    for a in argv._
-      @parse_resolution a
+  parse_args : (argv, cb) ->
+    ret = true
+    if argv.v
+      await @do_version defer()
+      ret = false
+    else if not (@upstream = argv.u)?
+      console.log "[E] -u<upstream> is required! Please provide a server"
+      ret = false
+    else
+      @port = argv.p if argv.p?
+      for a in argv._
+        @parse_resolution a
       
-    @uid = argv.U
-    @gid = argv.G
+      @uid = argv.U
+      @gid = argv.G
 
-    console.log "[I] Upstream server is: #{@upstream}"
+      console.log "[I] Upstream server is: #{@upstream}"
+    cb ret
  
   #-----------------------------------------
 
@@ -150,7 +177,7 @@ exports.Server = class Server
 
 exports.run = (argv) ->
   s = new Server
-  s.parse_args argv
-  s.run()
+  await s.parse_args argv, defer ret
+  s.run() if ret
 
 ##=======================================================================

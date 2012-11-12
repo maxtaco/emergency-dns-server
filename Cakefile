@@ -20,6 +20,6 @@ runIced = (args, cb) ->
 
 clearLibJs = (cb) ->
   files = fs.readdirSync 'lib'
-  files = ("lib/#{file}" for file in files when file.match(/\.js$/))
+  files = ("lib/#{file}" for file in files when file.match(/\.js$/) )
   fs.unlinkSync f for f in files
   cb()

@@ -3,7 +3,6 @@
 //=======================================================================
 
 var argv = require('optimist')
-    .demand(['u'])
     .usage(["Usage: $0 [-p <port>] [-u <upstream>] <res1> <res2> ...",
 	    "",
 	    "  This is an emergency DNS server.  Use it make a few resolutions",
@@ -44,4 +43,4 @@ var fs   = require('fs');
 
 //=======================================================================
 
-require("./server").run(argv)
+require("./lib/server").run(argv)
