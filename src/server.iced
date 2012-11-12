@@ -1,16 +1,9 @@
 dns = require 'native-dns'
-
-##=======================================================================
-
-argv = require('optimist')
-  .usage("Usage: $0 [-p <port>] [-u <upstream>] <res1> <res2> ...")
-  .demand(['u'])
-  .argv;
   
 
 ##=======================================================================
 
-class Server
+exports.Server = class Server
 
   #-----------------------------------------
   
@@ -105,11 +98,11 @@ class Server
       else
         @tab[from] = {} unless @tab[from]?
         @tab[from][qtyp] = to
-        console.log "[I] Resolving #{from} #{typ} -> #{to}"
+        console.log "[I] Resolving #{from}/#{typ} -> #{to}"
 
   #-----------------------------------------
   
-  parse_args : ->
+  parse_args : (argv) ->
     @port = argv.p if argv.p?
     @upstream = argv.u
     for a in argv._
@@ -136,4 +129,11 @@ class Server
         res.answer.push r
     res.send()
     
+##=======================================================================
+
+exports.run = (argv) ->
+  s = new Server
+  s.parse_args argv
+  s.run()
+
 ##=======================================================================

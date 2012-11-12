@@ -1,0 +1,19 @@
+{
+  "name": "emergency-dns-server",
+  "description": "An Emergency, Zero-Config DNS server",
+  "version": "0.0.1",
+  "author": "Max Krohn <themax@gmail.com>",
+  "dependencies": {
+    "request": "2.1.1",
+    "xml2js": "0.1.11",
+    "optimist" : "0.3.0",
+    "native-dns" : "0.3.0"
+  },
+  "keywords": ["dns", "simple", "zero-config", "command-line" ],
+  "repository": "git://github.com/maxtaco/emergency-dns-server.git",
+  "main" : "./lib/server.js",
+  "bin" : {
+  	"ednsd" : "./lib/cmd.js"
+  },
+  "engines": { "node": ">= 0.4.1" }
+}
