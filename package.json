@@ -4,6 +4,7 @@
   "version": "0.0.4",
   "author": "Max Krohn <themax@gmail.com>",
   "dependencies": {
+    "iced-coffee-script": "^1.8.0-c",
     "iced-runtime": "^1.0.2",
     "native-dns": "0.3.0",
     "optimist": "0.3.0",

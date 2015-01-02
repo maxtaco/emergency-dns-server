@@ -38,7 +38,7 @@ Building
 If you want to change/build this thing from scratch, you'll need one
 additional prerequesite --- *IcedCoffeeScript*.  Get it like so:
 
-    npm install iced-coffee-script -g
+    npm install -d
 
 And then you can build by running:
 
