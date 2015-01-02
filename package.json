@@ -4,16 +4,24 @@
   "version": "0.0.3",
   "author": "Max Krohn <themax@gmail.com>",
   "dependencies": {
+    "iced-runtime": "^1.0.2",
+    "native-dns": "0.3.0",
+    "optimist": "0.3.0",
     "request": "2.1.1",
-    "xml2js": "0.1.11",
-    "optimist" : "0.3.0",
-    "native-dns" : "0.3.0"
+    "xml2js": "0.1.11"
   },
-  "keywords": ["dns", "simple", "zero-config", "command-line" ],
+  "keywords": [
+    "dns",
+    "simple",
+    "zero-config",
+    "command-line"
+  ],
   "repository": "git://github.com/maxtaco/emergency-dns-server.git",
-  "main" : "./lib/server.js",
-  "bin" : {
-  	"ednsd" : "./cmd.js"
+  "main": "./lib/server.js",
+  "bin": {
+    "ednsd": "./cmd.js"
   },
-  "engines": { "node": ">= 0.4.1" }
+  "engines": {
+    "node": ">= 0.4.1"
+  }
 }
